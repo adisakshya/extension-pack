@@ -1,0 +1,48 @@
+{
+    "name": "adisakshya-extension-pack",
+    "displayName": "Adisakshya's Extension Pack",
+    "description": "Adisakshya Chauhan's extension packs for vscode and code-server",
+    "version": "1.0.0",
+    "publisher": "adisakshya",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/adisakshya/extension-pack"
+    },
+    "homepage": "https://github.com/adisakshya/extension-pack",
+    "bugs": {
+        "url": "https://github.com/adisakshya/extension-pack/issues",
+        "email": "adisakshya98@gmail.com"
+    },
+    "engines": {
+        "vscode": "^1.56.0"
+    },
+    "categories": [
+        "Extension Packs"
+    ],
+    "keywords": [
+        "playground"
+    ],
+    "extensionPack": [ 
+        "cssho.vscode-svgviewer", 
+        "docsmsft.docs-markdown", 
+        "eamodio.gitlens", 
+        "formulahendry.code-runner", 
+        "GitHub.github-vscode-theme", 
+        "GrapeCity.gc-excelviewer", 
+        "johnpapa.vscode-peacock", 
+        "ms-azuretools.vscode-docker", 
+        "ms-python.python", 
+        "ms-python.vscode-pylance", 
+        "ms-vscode-remote.vscode-remote-extensionpack", 
+        "ms-vscode.cpptools", 
+        "ms-vscode.vscode-typescript-next", 
+        "ritwickdey.LiveServer", 
+        "VisualStudioExptTeam.vscodeintellicode", 
+        "vscode-icons-team.vscode-icons", 
+        "vsls-contrib.codetour"
+    ],
+    "icon": "assets/icon.png",
+    "scripts": {
+        "pack": "vsce package"
+    }
+}
