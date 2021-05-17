@@ -4,22 +4,16 @@ node_js: 12
 env:
   global:
     - PACK_NAME=adisakshya-extension-pack
-    - VERSION=1.0.0
-
-stages:
-  - build
-  - name: deploy
-    if: branch = master AND type = push AND fork = false
-
-install: skip
+    - VERSION=$(node assets/version.js -p)
 
 jobs:
   include:
     - stage: build
       name: "Build and Test"
-      script:
+      install:
         # Install VSCE
         - npm install --global vsce
+      script:
         # Pack extensions
         - npm run pack
       workspaces:
@@ -27,13 +21,20 @@ jobs:
           name: ws1
           paths:
             - /home/travis/build/adisakshya/extension-pack/${PACK_NAME}-${VERSION}.vsix
-    - stage: deploy
+    - stage: GitHub Release
       name: "Publish VSIX file on GitHub Release"
       workspaces:
         use: ws1
-      script:
-        - echo 'Not Implemented!'
-        - ls /home/travis/build/adisakshya/extension-pack/
+      install: skip
+      script: skip
+      deploy:
+        provider: releases
+        api_key: ${GITHUB_SECURE_TOKEN}
+        name: ${VERSION}
+        file: /home/travis/build/adisakshya/extension-pack/${PACK_NAME}-${VERSION}.vsix
+        skip_cleanup: true
+        on:
+          tags: true
 
 notifications:
   email: false
