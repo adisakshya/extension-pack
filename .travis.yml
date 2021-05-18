@@ -26,12 +26,17 @@ jobs:
       workspaces:
         use: ws1
       install: skip
-      script: skip
+      script:
+        # Create release notes
+        - sed -i 's/TAG/'"${TRAVIS_TAG}"'/g' release-notes/template.md
+        - sed -i 's/VERSION/'"${VERSION}"'/g' release-notes/template.md
       deploy:
         provider: releases
         api_key: ${GITHUB_SECURE_TOKEN}
+        edge: true
         name: ${VERSION}
         file: /home/travis/build/adisakshya/extension-pack/${PACK_NAME}-${VERSION}.vsix
+        release_notes_file: release-notes/template.md
         skip_cleanup: true
         on:
           tags: true
