@@ -46,6 +46,7 @@
     ],
     "icon": "assets/icon.png",
     "scripts": {
-        "pack": "vsce package"
+        "ls": "vsce ls",
+        "pack": "vsce package -o adisakshya-extension-pack.vsix"
     }
 }

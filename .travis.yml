@@ -14,13 +14,15 @@ jobs:
         # Install VSCE
         - npm install --global vsce
       script:
+        # Lists all the files that will be published
+        - npm run ls
         # Pack extensions
         - npm run pack
       workspaces:
         create:
           name: ws1
           paths:
-            - /home/travis/build/adisakshya/extension-pack/${PACK_NAME}-${VERSION}.vsix
+            - /home/travis/build/adisakshya/extension-pack/${PACK_NAME}.vsix
     - stage: GitHub Release
       name: "Publish VSIX file on GitHub Release"
       workspaces:
@@ -29,13 +31,12 @@ jobs:
       script:
         # Create release notes
         - sed -i 's/TAG/'"${TRAVIS_TAG}"'/g' release-notes/template.md
-        - sed -i 's/VERSION/'"${VERSION}"'/g' release-notes/template.md
       deploy:
         provider: releases
         api_key: ${GITHUB_SECURE_TOKEN}
         edge: true
         name: ${VERSION}
-        file: /home/travis/build/adisakshya/extension-pack/${PACK_NAME}-${VERSION}.vsix
+        file: /home/travis/build/adisakshya/extension-pack/${PACK_NAME}.vsix
         release_notes_file: release-notes/template.md
         skip_cleanup: true
         on:
