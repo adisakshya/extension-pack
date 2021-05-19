@@ -4,6 +4,6 @@ All notable changes to the "adisakshya-ext-pack" extension pack will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## [1.0.0] - 2021-05-18
 
 - Initial release
